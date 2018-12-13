@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CMS.Model.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Customers</h2>
+<form asp-action="Search">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input type="text" name="keyword" id="keyword"/>
+            <input type="submit" name="Search"/>
+        </div>
+    <hr />
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="Notes" asp-route-id="@item.Id" id="customerId">Notes</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-action="Create">Create New Customer</a>
+</p>

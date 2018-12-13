@@ -1,0 +1,97 @@
+﻿@using CMS.Model;
+@model CMS.Model.Customer
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+@{
+
+    IList<SelectListItem> list = Enum.GetValues(typeof(Status)).Cast<Status>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }).ToList();
+
+    SelectList data = new SelectList(list, "Value", "Text");
+}
+<h2>Details</h2>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Detail">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <fieldset>
+                <legend>Basics</legend>
+
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label"></label>
+                    @Html.DropDownList("Status", data, new { @class = "form-control disabled" })
+
+
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CreateDate" class="control-label"></label>
+                    <input asp-for="CreateDate" class="form-control" disabled />
+                    <span asp-validation-for="CreateDate" class="text-danger"></span>
+                </div>
+            </fieldset>
+            <hr />
+            <fieldset>
+                <legend>Contact</legend>
+                <div class="form-group">
+                    <label asp-for="Contact.FirstName" class="control-label"></label>
+                    <input asp-for="Contact.FirstName" class="form-control" disabled />
+
+                    <label asp-for="Contact.LastName" class="control-label"></label>
+                    <input asp-for="Contact.LastName" class="form-control" disabled />
+
+                    <label asp-for="Contact.Email" class="control-label"></label>
+                    <input asp-for="Contact.Email" class="form-control" disabled />
+
+                    <label asp-for="Contact.Phone" class="control-label"></label>
+                    <input asp-for="Contact.Phone" class="form-control" disabled />
+                </div>
+            </fieldset>
+            <hr />
+
+            <fieldset>
+                <legend>Address</legend>
+                <div class="form-group">
+                    <label asp-for="Address.Line1" class="control-label"></label>
+                    <input asp-for="Address.Line1" class="form-control" disabled />
+
+                    <label asp-for="Address.Line2" class="control-label"></label>
+                    <input asp-for="Address.Line2" class="form-control" disabled />
+
+                    <label asp-for="Address.City" class="control-label"></label>
+                    <input asp-for="Address.City" class="form-control" disabled />
+
+                    <label asp-for="Address.Country" class="control-label"></label>
+                    <input asp-for="Address.Country" class="form-control" disabled />
+
+                </div>
+            </fieldset>
+            <hr />
+
+            <fieldset>
+                <legend>Address</legend>
+                <div class="form-group">
+                    <label title="Note" class="control-label"></label>
+                    <input id="Note" name="Note" class="form-control" disabled />
+                </div>
+            </fieldset>
+
+        </form>
+        
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

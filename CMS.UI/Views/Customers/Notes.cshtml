@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CMS.Model.Note>
+
+@{
+
+    string customerId = ViewBag.CustomerId;
+    ViewData["Title"] = "Notes";
+}
+
+<h2>Notes</h2>
+
+<p>
+    <a href="/Customers/createnote/@customerId">Create New Note</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Id)
+            </td>
+            <td>
+                <a asp-action="EditNote" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="DetailsNote" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="DeleteNote" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
