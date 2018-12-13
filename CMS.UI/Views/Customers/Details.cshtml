@@ -25,10 +25,7 @@
 
                 <div class="form-group">
                     <label asp-for="Status" class="control-label"></label>
-                    @Html.DropDownList("Status", data, new { @class = "form-control disabled" })
-
-
-                    <span asp-validation-for="Status" class="text-danger"></span>
+                    <input value="@Model.Status" class="form-control" disabled />
                 </div>
 
                 <div class="form-group">
@@ -74,15 +71,7 @@
                 </div>
             </fieldset>
             <hr />
-
-            <fieldset>
-                <legend>Address</legend>
-                <div class="form-group">
-                    <label title="Note" class="control-label"></label>
-                    <input id="Note" name="Note" class="form-control" disabled />
-                </div>
-            </fieldset>
-
+            
         </form>
         
     </div>
